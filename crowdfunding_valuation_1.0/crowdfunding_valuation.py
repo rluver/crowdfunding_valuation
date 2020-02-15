@@ -160,7 +160,7 @@ def company_value_estimation(fund_goal,prime_cost_calculate,estimated_profit,PV)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 logger = logging.getLogger(__name__)
-token = "939982516:AAHyT7JvbfnSftHLy4uwcFrOQEJSVZOJY0M"
+token = ""
 display = Display(visible = 0, size = (800, 600))
 display.start()
 driver = webdriver.Chrome(executable_path='usr/lib/chromium-browser/chromedriver')
