@@ -16,7 +16,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 # information
 
 token = ""
-driver = webdriver.Firefox(executable_path = 'C:/Program Files (x86)/RSelenium/geckodriver.exe')
+driver = webdriver.Firefox(executable_path = '')
 
 
 
