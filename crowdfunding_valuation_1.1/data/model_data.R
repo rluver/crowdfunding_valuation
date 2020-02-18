@@ -361,4 +361,4 @@ dayf %>% group_by(cat) %>% summarise(mean = mean(start - end)) %>%
 
 rm(list = c(paste("dataf", c("beauty", "fashion", "food", "homeliving", "pet", "tech"), sep = "_")))
 rm(list = c(paste("dayf", c("beauty", "fashion", "food", "homeliving", "pet", "tech"), sep = "_")))
-rm(list, x, y, start, end, model)
+rm(list, x, y, start, end, model, cat)
