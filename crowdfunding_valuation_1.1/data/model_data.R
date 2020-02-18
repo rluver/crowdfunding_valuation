@@ -185,16 +185,33 @@ dayf_tech = data.frame(start, end) %>% mutate(start = as_date(start),
 # combining
 
 dataf = bind_rows(dataf_tech, dataf_fashion) %>% 
-   bind_rows(dataf_beauty) %>% 
-   bind_rows(dataf_food) %>% 
-   bind_rows(dataf_homeliving) %>% 
-   bind_rows(dataf_pet)
-
+  bind_rows(list(x = NA, y = NA, cat = "social")) %>% 
+  bind_rows(list(x = NA, y = NA, cat = "design")) %>% 
+  bind_rows(dataf_beauty) %>% 
+  bind_rows(dataf_food) %>% 
+  bind_rows(dataf_homeliving) %>% 
+  bind_rows(list(x = NA, y = NA, cat = "travel")) %>% 
+  bind_rows(dataf_pet) %>% 
+  bind_rows(list(x = NA, y = NA, cat = "sports")) %>% 
+  bind_rows(list(x = NA, y = NA, cat = "stage")) %>% 
+  bind_rows(list(x = NA, y = NA, cat = "edu")) %>% 
+  bind_rows(list(x = NA, y = NA, cat = "game")) %>% 
+  bind_rows(list(x = NA, y = NA, cat = "publish")) 
+  
+  
 dayf = bind_rows(dayf_tech, dayf_fashion) %>%
-   bind_rows(dayf_beauty) %>% 
-   bind_rows(dayf_food) %>% 
-   bind_rows(dayf_homeliving) %>% 
-   bind_rows(dayf_pet)
+  bind_rows(list(start = NA, end = NA, cat = "social")) %>%
+  bind_rows(list(start = NA, end = NA, cat = "design")) %>% 
+  bind_rows(dayf_beauty) %>% 
+  bind_rows(dayf_food) %>% 
+  bind_rows(dayf_homeliving) %>% 
+  bind_rows(list(start = NA, end = NA, cat = "travel")) %>% 
+  bind_rows(dayf_pet) %>% 
+  bind_rows(list(start = NA, end = NA, cat = "sports")) %>% 
+  bind_rows(list(start = NA, end = NA, cat = "stage")) %>% 
+  bind_rows(list(start = NA, end = NA, cat = "edu")) %>% 
+  bind_rows(list(start = NA, end = NA, cat = "game")) %>% 
+  bind_rows(list(start = NA, end = NA, cat = "publish"))
 
 
 
@@ -332,9 +349,16 @@ model = zyp.sen(y ~ x, data = dataf %>% filter(cat == "pet") %>% mutate(x = log(
 Kendall(dataf %>% filter(cat == "pet") %>% select(x) %>% log() %>% unlist(), 
         dataf %>% filter(cat == "pet") %>% select(y) %>% log() %>% unlist())
 
-print(model)
-
 # mean 
 
 dayf %>% group_by(cat) %>% summarise(mean = mean(start - end)) %>% 
   filter(cat == "pet")
+
+
+
+
+# remove
+
+rm(list = c(paste("dataf", c("beauty", "fashion", "food", "homeliving", "pet", "tech"), sep = "_")))
+rm(list = c(paste("dayf", c("beauty", "fashion", "food", "homeliving", "pet", "tech"), sep = "_")))
+rm(list, x, y, start, end, model)
